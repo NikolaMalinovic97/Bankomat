@@ -43,11 +43,19 @@ public class BankomatTest {
 			//opcija 1 - kreiranje racuna--------------------------------------------------------------
 			if(opcija == 1) {
 				// unos broja novog racuna
-				System.out.print("\nUnesite broj novog racuna: ");
 				boolean regularan;
 				do {
 					regularan = false;
-					brojRacuna = input.nextInt();
+					while(true) {
+						try {
+							System.out.print("\nUnesite broj novog racuna: ");
+							brojRacuna = input.nextInt();
+							break;
+						} catch (Exception e) {
+							System.out.println("Pogresan unos pokusajte ponovo!");
+							input.next();
+						}
+					} 
 					if(brojRacuna < 0) {
 						System.out.println("Greska! Broj racuna mora biti pozitivan broj, pokusajte ponovo.");
 						regularan = true;
@@ -62,14 +70,29 @@ public class BankomatTest {
 				}while(regularan);
 				
 				// unos imena vlasnika racuna
-				System.out.print("Unesite ime vlasnika racuna: ");
-				imeVlasnikaRacuna = input.next();
-				
-				
+				while(true) {
+					try {
+						System.out.print("Unesite ime vlasnika racuna: ");
+						imeVlasnikaRacuna = input.next();
+						break;
+					} catch (Exception e) {
+						System.out.print("\nUnesite broj novog racuna: ");
+						input.nextLine();
+					}
+				}				
+					
 				// unos iznosa na racunu
-				System.out.print("Unesite pocetni iznos na racunu: ");
 				do {
-					iznosNaRacunu = input.nextDouble();
+					while(true) {
+						try {
+							System.out.print("Unesite pocetni iznos na racunu: ");
+							iznosNaRacunu = input.nextDouble();
+							break;
+						} catch (Exception e) {
+							System.out.println("Pogresan unos pokusajte ponovo!");
+							input.nextLine();
+						}
+					}
 					if(iznosNaRacunu < 0)
 						System.out.println("Greska! Iznos ne smije biti manji od 0, pokusajte ponovo.");
 				}while(iznosNaRacunu < 0);
@@ -82,10 +105,18 @@ public class BankomatTest {
 				boolean regularan;
 				int i,j;
 				// unos racuna source accounta
-				System.out.print("\nUnesite broj racun sa kojeg zelite transferisati novac: ");
 				do {
 					regularan = true;
-					sourceAcc = input.nextInt();
+					while(true) {
+						try {
+							System.out.print("\nUnesite broj racun sa kojeg zelite transferisati novac: ");
+							sourceAcc = input.nextInt();
+							break;
+						} catch (Exception e) {
+							System.out.println("Pogresan unos pokusajte ponovo!");
+							input.nextLine();
+						}
+					}
 					for (i = 0; i < listaRacuna.size(); i++) {
 						if(sourceAcc == listaRacuna.get(i).brojRacuna) {
 							regularan = false;
@@ -97,10 +128,18 @@ public class BankomatTest {
 				}while(regularan);
 				
 				// unos racuna target accounta
-				System.out.print("Unesite broj racun na koji zelite transferisati novac: ");
 				do {
 					regularan = true;
-					targetAcc = input.nextInt();
+					while(true) {
+						try {
+							System.out.print("Unesite broj racun na koji zelite transferisati novac: ");
+							targetAcc = input.nextInt();
+							break;
+						} catch (Exception e) {
+							System.out.println("Pogresan unos pokusajte ponovo!");
+							input.nextLine();
+						}
+					}
 					for (j = 0; j < listaRacuna.size(); j++) {
 						if(targetAcc == listaRacuna.get(j).brojRacuna) {
 							regularan = false;
@@ -113,10 +152,18 @@ public class BankomatTest {
 				
 				// unos iznos koji se treba prebaciti
 				int iznos;
-				System.out.print("Unesite iznos koji zelite transferisati: ");
 				do {
 					regularan = true;
-					iznos = input.nextInt();
+					while(true) {
+						try {
+							System.out.print("Unesite iznos koji zelite transferisati: ");
+							iznos = input.nextInt();
+							break;
+						} catch (Exception e) {
+							System.out.println("Pogresan unos pokusajte ponovo!");
+							input.nextLine();
+						}
+					}
 					if(iznos > listaRacuna.get(i).iznosNaRacunu)
 						System.out.println("Greska! Nema dovoljna sredstava na racunu za ovu transakciju, unesite drugi iznos.");
 					else
